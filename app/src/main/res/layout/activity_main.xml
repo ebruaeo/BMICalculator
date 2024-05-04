@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="228dp"
         android:layout_marginEnd="24dp"
-        android:text="1.85"
+        android:text="2.00"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleText" />
@@ -52,6 +52,9 @@
         android:progressTint="#A1A0DC"
         android:thumb="@drawable/my_thumb"
         android:thumbTint="#A1A0DC"
+        android:min="100"
+        android:max="300"
+        android:progress="200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleHeight" />
@@ -73,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="28dp"
-        android:text="50.5"
+        android:text="100"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBarHeight" />
@@ -97,6 +100,8 @@
         android:layout_width="393dp"
         android:layout_height="45dp"
         android:layout_marginTop="12dp"
+        android:max="2000"
+        android:progress="1000"
         android:progressBackgroundTint="#5E35B1"
         android:progressTint="#A1A0DC"
         android:thumb="@drawable/my_thumb"
