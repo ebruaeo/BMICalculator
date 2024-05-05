@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         binding.seekBarHeight.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
 
-                binding.heightText.text = "${progress/100.0}"
+                binding.heightText.text = "${progress / 100.0}"
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.seekBarWeight.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                binding.weightText.text = "${progress/10.0}"
+                binding.weightText.text = "${progress / 10.0}"
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -58,8 +58,9 @@ class MainActivity : AppCompatActivity() {
             binding.run {
                 var bmiValue =
                     textToFloat(weightText) / (textToFloat(heightText) * textToFloat(heightText))
+                bmiValue = (bmiValue * 100).toInt() / 100f
                 val intent = Intent(this@MainActivity, ResultActivity::class.java)
-                intent.putExtra("yollananVeri", bmiValue)
+                intent.putExtra(ResultActivity.BMI_KEY, bmiValue)
                 startActivity(intent)
 
             }

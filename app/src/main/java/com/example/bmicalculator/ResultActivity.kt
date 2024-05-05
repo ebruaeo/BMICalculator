@@ -10,6 +10,10 @@ import com.example.bmicalculator.databinding.ActivityResultBinding
 class ResultActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityResultBinding
+    companion object{
+        const val BMI_KEY = "bmiKey"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,7 +26,7 @@ class ResultActivity : AppCompatActivity() {
         }
 
         val intent = intent
-        val alinanVeri = intent.getFloatExtra("yollananVeri", 0f)
+        val alinanVeri = intent.getFloatExtra(BMI_KEY, 0f)
         binding.resultText.text = alinanVeri.toString()
 
         if (binding.resultText.text.toString().toFloat() < 18.5) {
