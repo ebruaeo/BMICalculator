@@ -28,31 +28,22 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        binding.seekBarHeight.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.seekBarHeight.setOnSeekBarChangeListener(object : SeekbarProgressChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-
                 binding.heightText.text = "${progress / 100.0}"
             }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
         })
 
 
-        binding.seekBarWeight.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding.seekBarWeight.setOnSeekBarChangeListener(object : SeekbarProgressChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 binding.weightText.text = "${progress / 10.0}"
             }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
         })
+
+
 
         binding.buttonCalculate.setOnClickListener {
             binding.run {
@@ -62,7 +53,6 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this@MainActivity, ResultActivity::class.java)
                 intent.putExtra(ResultActivity.BMI_KEY, bmiValue)
                 startActivity(intent)
-
             }
 
         }
@@ -79,5 +69,15 @@ class MainActivity : AppCompatActivity() {
     //Extension Function
 //    private fun TextView.textToInt() = text.toString().toInt()
     // private fun TextView.textToInt() = this.text.toString().toInt()
+
+}
+
+interface SeekbarProgressChangeListener : SeekBar.OnSeekBarChangeListener {
+
+    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+    }
+
+    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+    }
 
 }
