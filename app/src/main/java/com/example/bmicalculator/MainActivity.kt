@@ -1,9 +1,7 @@
 package com.example.bmicalculator
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -27,24 +25,13 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        setHeightSeekbarListener()
+        setWeightSeekbarListener()
+        setCalculateButtonClickListener()
 
-        binding.seekBarHeight.setOnSeekBarChangeListener(object : SeekbarProgressChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                binding.heightText.text = "${progress / 100.0}"
-            }
+    }
 
-        })
-
-
-        binding.seekBarWeight.setOnSeekBarChangeListener(object : SeekbarProgressChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                binding.weightText.text = "${progress / 10.0}"
-            }
-
-        })
-
-
-
+    private fun setCalculateButtonClickListener() {
         binding.buttonCalculate.setOnClickListener {
             binding.run {
                 var bmiValue =
@@ -54,9 +41,24 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra(ResultActivity.BMI_KEY, bmiValue)
                 startActivity(intent)
             }
-
         }
+    }
 
+    private fun setWeightSeekbarListener() {
+        binding.seekBarWeight.setOnSeekBarChangeListener(object : SeekbarProgressChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                binding.weightText.text = "${progress / 10.0}"
+            }
+        })
+    }
+
+    private fun setHeightSeekbarListener() {
+        binding.seekBarHeight.setOnSeekBarChangeListener(object : SeekbarProgressChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                binding.heightText.text = "${progress / 100.0}"
+            }
+
+        })
     }
 
 //    private fun textToInt(textView: TextView): Int {
