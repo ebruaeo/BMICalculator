@@ -2,15 +2,18 @@ package com.example.bmicalculator
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.bmicalculator.databinding.ActivityResultBinding
+import org.w3c.dom.Text
 
 class ResultActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityResultBinding
-    companion object{
+
+    companion object {
         const val BMI_KEY = "bmiKey"
     }
 
@@ -25,30 +28,35 @@ class ResultActivity : AppCompatActivity() {
             insets
         }
 
-        val intent = intent
-        val alinanVeri = intent.getFloatExtra(BMI_KEY, 0f)
-        binding.resultText.text = alinanVeri.toString()
-
-        if (binding.resultText.text.toString().toFloat() < 18.5) {
-            binding.resultExplaination.text = "Eat more pies!"
-            binding.background.setBackgroundResource(R.drawable.blue_color)
-        } else if (binding.resultText.text.toString()
-                .toFloat() < 24.9 && binding.resultText.text.toString().toFloat() > 18.5
-        ) {
-            binding.resultExplaination.text = "Fit as a fiddle!"
-            binding.background.setBackgroundResource(R.drawable.green_color)
-
-
-        } else {
-            binding.resultExplaination.text = "Eat less pies!"
-            binding.background.setBackgroundResource(R.drawable.red_color)
-
-
-        }
+        val bmiValue = intent.getFloatExtra(BMI_KEY, 0f)
+        binding.resultText.text = bmiValue.toString()
+        setResultScreen(bmiValue)
 
         binding.recalculateButton.setOnClickListener {
             finish()
 
         }
+    }
+
+    private fun setResultScreen(bmiValue: Float) {
+        if (bmiValue < 18.5) {
+            setExplanationText("Eat more pies!")
+            setBackgroundColor(R.drawable.blue_color)
+        } else if (bmiValue < 24.9 && bmiValue > 18.5
+        ) {
+            setExplanationText("Fit as a fiddle!")
+            setBackgroundColor(R.drawable.green_color)
+        } else {
+            setExplanationText("Eat less pies!")
+            setBackgroundColor(R.drawable.red_color)
+        }
+    }
+
+    private fun setExplanationText(text: String) {
+        binding.resultExplaination.text = text
+    }
+
+    private fun setBackgroundColor(@DrawableRes resId: Int) {
+        binding.background.setBackgroundResource(resId)
     }
 }
