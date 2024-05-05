@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         binding.buttonCalculate.setOnClickListener {
             binding.run {
                 var bmiValue =
-                    textToFloat(weightText) / (textToFloat(heightText) * textToFloat(heightText))
+                    weightText.textToFloat() / (textToFloat(heightText) * textToFloat(heightText))
                 bmiValue = (bmiValue * 100).toInt() / 100f
                 val intent = Intent(this@MainActivity, ResultActivity::class.java)
                 intent.putExtra(ResultActivity.BMI_KEY, bmiValue)
