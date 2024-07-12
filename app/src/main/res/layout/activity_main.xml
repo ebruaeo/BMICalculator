@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mainpage_bg"
-    tools:context=".MainActivity">
+    android:background="@drawable/mainpage_bg">
 
     <TextView
         android:id="@+id/titleText"
@@ -124,5 +124,16 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/weightText" />
+
+    <ImageButton
+        android:id="@+id/historyButton"
+        android:layout_width="61dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_history" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
