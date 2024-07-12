@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         setHeightSeekbarListener()
         setWeightSeekbarListener()
         setCalculateButtonClickListener()
+        openHistoryPage()
 
     }
 
@@ -59,6 +60,13 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun openHistoryPage(){
+        binding.historyButton.setOnClickListener {
+            val intent = Intent(this@MainActivity, HistoryActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 //    private fun textToInt(textView: TextView): Int {
