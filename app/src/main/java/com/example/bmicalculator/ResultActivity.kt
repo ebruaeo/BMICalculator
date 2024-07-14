@@ -1,5 +1,6 @@
 package com.example.bmicalculator
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.DrawableRes
@@ -33,6 +34,9 @@ class ResultActivity : AppCompatActivity() {
         setResultScreen(bmiValue)
 
         binding.recalculateButton.setOnClickListener {
+            val intent = Intent(this@ResultActivity, MainActivity::class.java)
+            intent.putExtra("result", binding.resultExplaination.text)
+            setResult(RESULT_OK, intent)
             finish()
 
         }
