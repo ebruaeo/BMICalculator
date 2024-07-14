@@ -5,14 +5,20 @@ import android.os.Bundle
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.bmicalculator.databinding.ActivityMainBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var BMIRecordList: ArrayList<BMIRecord> = arrayListOf()
     private var minValue = 0.0f
     private var stepSize = 1.0f
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +36,22 @@ class MainActivity : AppCompatActivity() {
         setCalculateButtonClickListener()
         openHistoryPage()
 
+
     }
+
+    val activityLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult(), { activityResult ->
+            val resultCode = activityResult.resultCode
+            if (resultCode == RESULT_OK) {
+                activityResult.data?.getStringExtra("result")?.let {
+                    val newRecord = BMIRecordList.last().copy(result = it)
+                    BMIRecordList.removeLast()
+                    BMIRecordList.add(newRecord)
+                }
+            }
+        }
+    )
+
 
     private fun setCalculateButtonClickListener() {
         binding.buttonCalculate.setOnClickListener {
@@ -40,7 +61,17 @@ class MainActivity : AppCompatActivity() {
                 bmiValue = (bmiValue * 100).toInt() / 100f
                 val intent = Intent(this@MainActivity, ResultActivity::class.java)
                 intent.putExtra(ResultActivity.BMI_KEY, bmiValue)
-                startActivity(intent)
+                activityLauncher.launch(intent)
+
+                BMIRecordList.add(
+                    BMIRecord(
+                        "${getCurrentDate()}",
+                        weightText.textToDouble(),
+                        heightText.textToDouble(),
+                        ""
+                    )
+                )
+
             }
         }
     }
@@ -62,9 +93,10 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun openHistoryPage(){
+    private fun openHistoryPage() {
         binding.historyButton.setOnClickListener {
             val intent = Intent(this@MainActivity, HistoryActivity::class.java)
+            intent.putExtra("history", BMIRecordList)
             startActivity(intent)
         }
     }
@@ -80,6 +112,11 @@ class MainActivity : AppCompatActivity() {
 //    private fun TextView.textToInt() = text.toString().toInt()
     // private fun TextView.textToInt() = this.text.toString().toInt()
 
+}
+
+fun getCurrentDate(): String {
+    val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+    return dateFormat.format(Date())
 }
 
 interface SeekbarProgressChangeListener : SeekBar.OnSeekBarChangeListener {
