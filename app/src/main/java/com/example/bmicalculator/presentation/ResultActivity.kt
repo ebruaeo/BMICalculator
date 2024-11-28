@@ -1,4 +1,4 @@
-package com.example.bmicalculator
+package com.example.bmicalculator.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,8 +7,8 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.bmicalculator.R
 import com.example.bmicalculator.databinding.ActivityResultBinding
-import org.w3c.dom.Text
 
 class ResultActivity : AppCompatActivity() {
 

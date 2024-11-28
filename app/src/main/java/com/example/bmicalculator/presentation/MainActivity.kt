@@ -1,4 +1,4 @@
-package com.example.bmicalculator
+package com.example.bmicalculator.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.bmicalculator.R
 import com.example.bmicalculator.databinding.ActivityMainBinding
+import com.example.bmicalculator.textToDouble
+import com.example.bmicalculator.textToFloat
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

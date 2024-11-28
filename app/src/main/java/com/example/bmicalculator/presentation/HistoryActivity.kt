@@ -1,4 +1,4 @@
-package com.example.bmicalculator
+package com.example.bmicalculator.presentation
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bmicalculator.R
 import com.example.bmicalculator.databinding.ActivityHistoryBinding
 
 class HistoryActivity : AppCompatActivity() {
